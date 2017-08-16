@@ -4,7 +4,7 @@ A Node Js API for three stage email validation including the following;
 * MX mail server existence,
 * mailbox existence.
 
-*NOTE: True mailbox existence may only be performed, with certinaty, by sending a verification email and having the user verify their email.*
+*NOTE: True mailbox existence may only be performed, with certainty, by sending a verification email and having the user verify their email.*
 
 ## Install
 ```sh
