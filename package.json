@@ -1,0 +1,40 @@
+{
+  "name": "mail-confirm",
+  "version": "1.0.0",
+  "description": "A Node Js API for three stage email validation including, pattern, MX, and mailbox existence validation.",
+  "main": "./build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src --out-dir build",
+    "doc": "jsdoc2md ./build/index.js"
+  },
+  "keywords": [
+    "mailgun",
+    "email",
+    "validation",
+    "mailbox",
+    "verification",
+    "smtp",
+    "email verification",
+    "email validation",
+    "mailbox validation",
+    "VRFY",
+    "EHLO",
+    "HELO",
+    "MAIL FROM",
+    "RCPT TO"
+  ],
+  "author": {
+    "name": "Elias Hussary",
+    "email": "eliashussary@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliashussary/mail-confirm"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  }
+}
