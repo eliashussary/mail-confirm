@@ -1,7 +1,5 @@
 'use strict';
 
-var _util = require('util');
-
 var _dns = require('dns');
 
 var _dns2 = _interopRequireDefault(_dns);
@@ -19,7 +17,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * @copyright (C) 2017 Elias Hussary
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             */
 
-const resolveMx = (0, _util.promisify)(_dns2.default.resolveMx);
+const resolveMx = hostname => {
+  return new Promise((resolve, reject) => {
+    _dns2.default.resolveMx(hostname, (err, val) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(val);
+    });
+  });
+};
 
 /**
  * Email address validation and SMTP verification API.
