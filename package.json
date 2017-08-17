@@ -1,6 +1,6 @@
 {
   "name": "mail-confirm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Node Js API for three stage email validation including, pattern, MX, and mailbox existence validation.",
   "main": "./build/index.js",
   "scripts": {

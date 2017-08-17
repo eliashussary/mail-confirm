@@ -5,10 +5,18 @@
  * @copyright (C) 2017 Elias Hussary
  */
 
-import { promisify } from 'util'
 import dns from 'dns'
 import net from 'net'
-const resolveMx = promisify(dns.resolveMx)
+const resolveMx = hostname => {
+  return new Promise((resolve, reject) => {
+    dns.resolveMx(hostname, (err, val) => {
+      if (err) {
+        return reject(err)
+      }
+      resolve(val)
+    })
+  })
+}
 
 /**
  * Email address validation and SMTP verification API.
