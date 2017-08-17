@@ -16,7 +16,7 @@ npm i mail-confirm
 
 ## Usage
 #### Usage Notes
-* Ensure you execute this in an environment where SMTP port 25 is accessible. Failing to do so  throw error *Mailbox check failed*.
+* Ensure you execute this in an environment where SMTP port 25 is accessible. Failing to do so will throw error *Mailbox check failed*.
 * Internal instance methods are exposed as Static methods. If you wish to build your own email verification routine, or only require one of these staged methods, simply call MailConfirm.[methodName]. *See API Documentation below.*
 ```Javascript
 import MailConfirm from 'mail-confirm'
@@ -24,7 +24,7 @@ import MailConfirm from 'mail-confirm'
 // promises
 const email = new MailConfirm({
     emailAddress: 'test@gmail.com',
-    timeout: 2500,
+    timeout: 2000,
     mailFrom: 'my@email.com',
     invalidMailboxKeywords: ['noreply', 'noemail']
 })
@@ -32,11 +32,9 @@ const email = new MailConfirm({
 email.check().then(console.log).catch(console.log)
 
 // async/await
-const check = async (email) => {
+const check = async (emailAddress) => {
     try{
-        const email = new MailConfirm({
-            emailAddress: email,
-        })
+        const email = new MailConfirm({ emailAddress })
         const result = await email.check()
         return result
     }catch(err){
@@ -50,7 +48,7 @@ output =>
     { emailAddress: 'test@gmail.com',
     timeout: 2000,
     invalidMailboxKeywords: [],
-    mailFrom: 'email@example.org',
+    mailFrom: 'my@email.com',
     mailbox: 'test',
     hostname: 'gmail.com',
     mxRecords:
@@ -79,7 +77,6 @@ output =>
 
 
 ## API Documentation
-
 
 <a name="MailConfirm"></a>
 
@@ -115,7 +112,8 @@ Email address validation and SMTP verification API.
 Runs the email validation routine and supplies a final result.
 
 **Kind**: instance method of [<code>MailConfirm</code>](#MailConfirm)
-**Returns**: <code>Object</code> - - The instance state object containing all of the isValid* boolean checks, MX Records, and SMTP MEssages.
+**Returns**: <code>Object</code> - - The instance state object containing all of the isValid* boolean checks, MX Records, and SMTP Messages.
+
 <a name="MailConfirm.resolvePattern"></a>
 
 ### MailConfirm.resolvePattern(emailAddress, [invalidMailboxKeywords]) ⇒ <code>boolean</code>
@@ -126,7 +124,8 @@ Determines if the email address pattern is valid based on regex and invalid keyw
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | emailAddress | <code>string</code> |  | The full email address ypu want to check. |
-| [invalidMailboxKeywords] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | An array of keywords to invalidate your check, ie. noreply, noemail, etc. |
+| [invalidMailboxKeywords] | <code>Array.&lt;string&gt;</code> | <code>[]</code> | An array of keywords to invalidate your check, ie. noreply
+, noemail, etc. |
 
 <a name="MailConfirm.resolveMx"></a>
 
@@ -146,7 +145,7 @@ Wrap of dns.resolveMx native method.
 Runs the SMTP mailbox check. Commands for HELO/EHLO, MAIL FROM, RCPT TO.
 
 **Kind**: static method of [<code>MailConfirm</code>](#MailConfirm)
-**Returns**: <code>Array.&lt;object&gt;</code> - - Object of SMTP responses {command, status, message}
+**Returns**: <code>Array.&lt;object&gt;</code> - - Object of SMTP responses [ {command, status, message} ]
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -154,7 +153,11 @@ Runs the SMTP mailbox check. Commands for HELO/EHLO, MAIL FROM, RCPT TO.
 | config.emailAddress | <code>string</code> | The email address you want to check. |
 | config.mxRecords | <code>Array.&lt;object&gt;</code> | The MX Records array supplied from resolveMx. |
 | config.timeout | <code>number</code> | Timeout parameter for the SMTP routine. |
-| config.mailFrom | <code>string</code> | The email address supplied to the MAIL FROM command. |
+| config.mailFrom | <code>string</code> | The email address supplied to the MAIL FROM SMTP command. |
 
-License: MIT   
-Copyright (C) 2017 - Elias Hussary
+<a name="resolveMx"></a>
+
+**Title**: MailConfirm    
+**Author**: Elias Hussary <eliashussary@gmail.com>    
+**License**: MIT    
+**Copyright**: (C) 2017 Elias Hussary

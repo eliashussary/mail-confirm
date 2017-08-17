@@ -13,7 +13,7 @@ var _net2 = _interopRequireDefault(_net);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * @title Check Email  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * @title MailConfirm  
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * @author Elias Hussary <eliashussary@gmail.com>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * @license MIT
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * @copyright (C) 2017 Elias Hussary
@@ -109,8 +109,8 @@ class MailConfirm {
    * @param {string} config.emailAddress - The email address you want to check.
    * @param {object[]} config.mxRecords - The MX Records array supplied from resolveMx.
    * @param {number} config.timeout - Timeout parameter for the SMTP routine.
-   * @param {string} config.mailFrom - The email address supplied to the MAIL FROM command.
-   * @returns {object[]} - Object of SMTP responses {command, status, message}
+   * @param {string} config.mailFrom - The email address supplied to the MAIL FROM SMTP command.
+   * @returns {object[]} - Object of SMTP responses [ {command, status, message} ]
    * @memberof MailConfirm
    */
   static resolveSmtpMailbox({ emailAddress, mxRecords, timeout, mailFrom }) {
@@ -169,7 +169,7 @@ class MailConfirm {
   /**
    * Runs the email validation routine and supplies a final result.
    * 
-   * @returns {Object} - The instance state object containing all of the isValid* boolean checks, MX Records, and SMTP MEssages.
+   * @returns {Object} - The instance state object containing all of the isValid* boolean checks, MX Records, and SMTP Messages.
    * @memberof MailConfirm
    */
   check() {
